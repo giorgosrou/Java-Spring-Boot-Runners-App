@@ -1,12 +1,14 @@
 package Gero.dev.runnerz.run;
 
 import jakarta.annotation.PostConstruct;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class RunRepository {
 
   private List<Run> runs = new ArrayList<Run>();
