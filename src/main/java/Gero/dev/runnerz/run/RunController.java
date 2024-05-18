@@ -1,9 +1,8 @@
 package Gero.dev.runnerz.run;
 
-import jakarta.annotation.PostConstruct;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +27,7 @@ public class RunController {
   Run findById(@PathVariable Integer id) {
     Optional<Run> run = runRepository.findById(id);
     if (run.isEmpty()) {
-      throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+      throw new RunNotFoundException();
     }
     return run.get();
   }
@@ -36,7 +35,7 @@ public class RunController {
   //POST Requests
   @ResponseStatus(HttpStatus.CREATED)
   @PostMapping("")
-  void create(@RequestBody Run run) {
+  void create(@Valid @RequestBody Run run) {
     runRepository.create(run);
   }
 

@@ -44,14 +44,14 @@ public class RunRepository {
     runs.add(new Run(1,
         "Monday run",
         LocalDateTime.now(),
-        LocalDateTime.now().plus(68, ChronoUnit.MINUTES),
+        LocalDateTime.now().plusMinutes(68),
         3,
         Location.Outdoor));
 
     runs.add(new Run(2,
         "Tuesday run",
         LocalDateTime.now(),
-        LocalDateTime.now().plus(68, ChronoUnit.MINUTES),
+        LocalDateTime.now().plusMinutes(68),
         5,
         Location.Outdoor));
   }
