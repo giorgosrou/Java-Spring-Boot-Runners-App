@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.Assert;
 
 import java.util.List;
 import java.util.Optional;
@@ -49,6 +50,18 @@ public class RunRepository {
         .update();
   }
 
+  public int count() {return jdbcClient.sql("SELECT * FROM run").query().listOfRows().size();}
+
+  public void saveAll(List<Run> runs) {
+    runs.stream().forEach(this::create);
+  }
+
+  public List<Run> findByLocation(String location) {
+    return jdbcClient.sql("SELECT * FROM runs WHERE location = :location")
+        .param("location", location)
+        .query(Run.class)
+        .list();
+  }
 
 
 
